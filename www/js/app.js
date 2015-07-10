@@ -33,7 +33,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     .state('tab', {
         url: "/tab",
         abstract: true,
-        templateUrl: "templates/tabs.html"
+        templateUrl: "templates/tabs.html",
+        controller: 'AppCtrl'
     })
 
     // Each tab has its own nav history stack:
@@ -57,15 +58,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
             }
         }
     })
-        .state('tab.chat-detail', {
-            url: '/chats/:chatId',
-            views: {
-                'tab-chats': {
-                    templateUrl: 'templates/chat-detail.html',
-                    controller: 'ChatDetailCtrl'
-                }
-            }
-        })
 
     .state('tab.blog', {
         url: '/blog',
@@ -97,19 +89,41 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
         }
     })
 
-    .state('main', {
-        url: '/main',
-        templateUrl: 'templates/mainContainer.html',
-        abstract: true,
-        controller: 'MainCtrl'
+    // side-menu
+
+    .state('tab.search', {
+        url: "/search",
+        views: {
+            'menuContent': {
+                templateUrl: "templates/search.html"
+            }
+        }
     })
 
-    .state('main.info', {
-        url: '/info',
+    .state('tab.browse', {
+        url: "/browse",
         views: {
-            'main': {
-                templateUrl: 'templates/info.html',
-                controller: 'InfoPageController'
+            'menuContent': {
+                templateUrl: "templates/browse.html"
+            }
+        }
+    })
+        .state('tab.playlists', {
+            url: "/playlists",
+            views: {
+                'menuContent': {
+                    templateUrl: "templates/playlists.html",
+                    controller: 'PlaylistsCtrl'
+                }
+            }
+        })
+
+    .state('tab.single', {
+        url: "/playlists/:playlistId",
+        views: {
+            'menuContent': {
+                templateUrl: "templates/playlist.html",
+                controller: 'PlaylistCtrl'
             }
         }
     });
